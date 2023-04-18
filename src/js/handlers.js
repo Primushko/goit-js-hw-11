@@ -68,7 +68,9 @@ export async function onClickBtnLoadMore() {
 
     if (showPages <= page) {
       hideBtnLoadMore();
-      Notiflix.Notify.failure(`На жаль, ви досягли кінця результатів пошуку.`);
+      Notiflix.Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
     }
 
     renderGalleryMarkup(galleryItems.data.hits);
