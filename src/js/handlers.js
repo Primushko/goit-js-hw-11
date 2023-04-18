@@ -1,6 +1,6 @@
 import Notiflix, { Loading } from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './refs';
 import { renderGalleryMarkup } from './createmarkup';
@@ -25,7 +25,7 @@ export async function onFormSubmit(e) {
   if (request === '') {
     hideBtnLoadMore();
     return Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+      'На жаль, немає зображень, що відповідають вашому запиту. Будь ласка, спробуйте ще раз.'
     );
   }
 
@@ -36,14 +36,14 @@ export async function onFormSubmit(e) {
     if (galleryItems.data.hits.length === 0) {
       cleanGallery();
       Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
+        'На жаль, немає зображень, що відповідають вашому запиту. Будь ласка, спробуйте ще раз.'
       );
     } else if (totalPages >= 1 && totalPages < 40) {
       hideBtnLoadMore();
-      Notiflix.Notify.success(`Hooray! We found ${totalPages} image.`);
+      Notiflix.Notify.success(`Ура! Ми знайшли ${totalPages} зображення.`);
     } else if (totalPages > 40) {
       showBtnLoadMore();
-      Notiflix.Notify.success(`Hooray! We found ${totalPages} image.`);
+      Notiflix.Notify.success(`Ура! Ми знайшли ${totalPages} зображення.`);
     }
     renderGalleryMarkup(galleryItems.data.hits);
 
@@ -51,7 +51,7 @@ export async function onFormSubmit(e) {
   } catch (error) {
     console.log(error);
     Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+      'На жаль, немає зображень, що відповідають вашому запиту. Будь ласка, спробуйте ще раз.'
     );
   }
 
@@ -68,15 +68,13 @@ export async function onClickBtnLoadMore() {
 
     if (showPages <= page) {
       hideBtnLoadMore();
-      Notiflix.Notify.failure(
-        "We're sorry, but you've reached the end of search results."
-      );
+      Notiflix.Notify.failure(`На жаль, ви досягли кінця результатів пошуку.`);
     }
 
     renderGalleryMarkup(galleryItems.data.hits);
   } catch (error) {
     Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+      'На жаль, немає зображень, що відповідають вашому запиту. Будь ласка, спробуйте ще раз.'
     );
   }
   lightbox.refresh();
