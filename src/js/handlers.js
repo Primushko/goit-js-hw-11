@@ -38,7 +38,7 @@ export async function onFormSubmit(e) {
       Notiflix.Notify.failure(
         'На жаль, немає зображень, що відповідають вашому запиту. Будь ласка, спробуйте ще раз.'
       );
-    } else if (totalPages >= 1 && totalPages < 40) {
+    } else if (totalPages < perPage) {
       hideBtnLoadMore();
       Notiflix.Notify.success(`Ура! Ми знайшли ${totalPages} зображення.`);
     } else if (totalPages > 40) {
