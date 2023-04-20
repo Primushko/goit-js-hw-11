@@ -47,7 +47,6 @@ export async function onFormSubmit(e) {
     }
     renderGalleryMarkup(galleryItems.data.hits);
 
-    lightbox.refresh();
   } catch (error) {
     console.log(error);
     Notiflix.Notify.failure(
